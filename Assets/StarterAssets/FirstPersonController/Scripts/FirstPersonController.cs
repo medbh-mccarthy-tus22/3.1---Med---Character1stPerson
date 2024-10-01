@@ -61,7 +61,8 @@ namespace StarterAssets
 		private float _rotationVelocity;
 		private float _verticalVelocity;
 		private float _terminalVelocity = 53.0f;
-		public float playerHeight;
+		private Transform PlayerCapsule;
+		public float playerHeightCrouch = 0.5f;
 
 		// timeout deltatime
 		private float _jumpTimeoutDelta;
@@ -275,7 +276,8 @@ namespace StarterAssets
 			if (_input.crouch == true)
 			{
 				//Camera transform & Player pill model scale change. (Due to player camera root, only player capsule scale.y need be changed.)
-				playerHeight = 0.5f;
+				//subtract player height from PlayerCapsule.localScale.y
+				Transform.localScale.y -= playerHeightCrouch;
 			}
 		}
 	}
