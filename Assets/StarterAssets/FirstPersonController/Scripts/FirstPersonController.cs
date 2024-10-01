@@ -26,6 +26,8 @@ namespace StarterAssets
 		public float JumpHeight = 1.2f;
 		[Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
 		public float Gravity = -15.0f;
+		[Tooltip("The size multiplier when crouching")]
+		public float Crouch = 0.5f;
 
 		[Space(10)]
 		[Tooltip("Time required to pass before being able to jump again. Set to 0f to instantly jump again")]
@@ -115,6 +117,7 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
+			Crouching();
 		}
 
 		private void LateUpdate()
@@ -150,7 +153,7 @@ namespace StarterAssets
 				transform.Rotate(Vector3.up * _rotationVelocity);
 			}
 		}
-
+		
 		private void Move()
 		{
 			// set target speed based on move speed, sprint speed and if sprint is pressed
@@ -263,6 +266,15 @@ namespace StarterAssets
 
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
+		}
+
+		private void Crouching() 
+		{
+			//if crouch input is pressed, player height (scale y axis) and camera height (transform y axis), are subtracted by 'Crouch' amount.
+			if (_input.crouch == true)
+			{
+				//Camera transform & Player pill model scale change.
+			}
 		}
 	}
 }
