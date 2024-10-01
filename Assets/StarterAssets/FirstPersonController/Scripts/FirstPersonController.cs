@@ -61,7 +61,7 @@ namespace StarterAssets
 		private float _rotationVelocity;
 		private float _verticalVelocity;
 		private float _terminalVelocity = 53.0f;
-		private Transform PlayerCapsule;
+		public Vector3 theScaleHeight;
 		public float playerHeightCrouch = 0.5f;
 
 		// timeout deltatime
@@ -277,7 +277,13 @@ namespace StarterAssets
 			{
 				//Camera transform & Player pill model scale change. (Due to player camera root, only player capsule scale.y need be changed.)
 				//subtract player height from PlayerCapsule.localScale.y
-				Transform.localScale.y -= playerHeightCrouch;
+				Vector3 theScaleHeight = transform.localScale;
+				theScaleHeight = new Vector3(1, 0.5f, 1);
+				transform.localScale = theScaleHeight;
+			}
+			else
+			{
+				transform.localScale = new Vector3(1, 1, 1);
 			}
 		}
 	}
