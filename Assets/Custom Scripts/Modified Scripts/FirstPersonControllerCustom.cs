@@ -28,7 +28,7 @@ namespace StarterAssets
 		[Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
 		public float Gravity = -15.0f;
 		[Tooltip("The size multiplier when crouching")]
-		public float Crouch = 0.5f;
+		public float playerHeightCrouch = 0.5f;
 
 		[Space(10)]
 		[Tooltip("Time required to pass before being able to jump again. Set to 0f to instantly jump again")]
@@ -63,7 +63,6 @@ namespace StarterAssets
 		private float _verticalVelocity;
 		private float _terminalVelocity = 53.0f;
 		public Vector3 theScaleHeight;
-		public float playerHeightCrouch = 0.5f;
 		public float lerpTime = 1f;
 
 		// timeout deltatime
@@ -275,7 +274,7 @@ namespace StarterAssets
 		private void Crouching()
 		{
 			//if crouch input is pressed, player height (scale y axis) and camera height (transform y axis), are subtracted by 'Crouch' amount.
-			if (_input.crouch == true)
+			if (_input.crouch == false)
 			{
 				//Camera transform & Player pill model scale change. (Due to player camera root, only player capsule scale.y need be changed.)
 				//subtract player height from PlayerCapsule.localScale.y
@@ -286,7 +285,7 @@ namespace StarterAssets
 				//Lerp from prior localScale Vector3 to desired localScale Vector3
 				transform.localScale = theScaleHeight;
 			}
-			else if (_input.crouch == false)
+			else if (_input.crouch == true)
             {
 				//Lerp from prior localScale Vector3 to desired localScale Vector3
 				transform.localScale = Vector3.Lerp(new Vector3(1, playerHeightCrouch, 1), new Vector3(1, 1, 1), lerpTime * Time.deltaTime);
