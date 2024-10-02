@@ -292,7 +292,7 @@ namespace StarterAssets
 			/*
 			if (_input.crouch == false && objectBlockingStanding == true) //objectBlockingStandard should be a raycast making sure there is not a collider within a certain distance of playerCapsule.
 			{
-				transform.localScale = new Vector3(1, 0.5f, 1);
+				transform.localScale = new Vector3(1, playerHeightCrouch, 1);
 			}
 			*/
 		}
