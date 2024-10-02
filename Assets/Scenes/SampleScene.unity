@@ -509,7 +509,7 @@ MonoBehaviour:
   SpeedChangeRate: 10
   JumpHeight: 1.2
   Gravity: -15
-  Crouch: 0.5
+  playerHeightCrouch: 0.5
   JumpTimeout: 0.1
   FallTimeout: 0.15
   Grounded: 0
@@ -522,7 +522,7 @@ MonoBehaviour:
   TopClamp: 90
   BottomClamp: -90
   theScaleHeight: {x: 0, y: 0, z: 0}
-  playerHeightCrouch: 0.5
+  lerpTime: 3
 --- !u!114 &715500554
 MonoBehaviour:
   m_ObjectHideFlags: 0
