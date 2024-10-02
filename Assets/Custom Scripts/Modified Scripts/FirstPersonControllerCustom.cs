@@ -277,13 +277,17 @@ namespace StarterAssets
 			{
 				//Camera transform & Player pill model scale change. (Due to player camera root, only player capsule scale.y need be changed.)
 				//subtract player height from PlayerCapsule.localScale.y
+				
 				Vector3 theScaleHeight = transform.localScale;
 				theScaleHeight = new Vector3(1, playerHeightCrouch, 1);
-				transform.localScale = theScaleHeight;
+
+                //Lerp from prior localScale Vector3 to desired localScale Vector3
+                transform.localScale = theScaleHeight;
 			}
 			else
 			{
-				transform.localScale = new Vector3(1, 1, 1);
+                //Lerp from prior localScale Vector3 to desired localScale Vector3
+                transform.localScale = new Vector3(1, 1, 1);
 			}
 			/*
 			if (_input.crouch == false && objectBlockingStanding == true) //objectBlockingStandard should be a raycast making sure there is not a collider within a certain distance of playerCapsule.
