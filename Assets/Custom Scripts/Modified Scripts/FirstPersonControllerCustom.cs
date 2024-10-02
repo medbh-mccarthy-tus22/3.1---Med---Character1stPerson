@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -63,7 +64,7 @@ namespace StarterAssets
 		private float _terminalVelocity = 53.0f;
 		public Vector3 theScaleHeight;
 		public float playerHeightCrouch = 0.5f;
-		public float floatTime = 0.1f;
+		public float floatTime = 1f;
 
 		// timeout deltatime
 		private float _jumpTimeoutDelta;
@@ -271,29 +272,34 @@ namespace StarterAssets
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
 
-		private void Crouching() 
+		private void Crouching()
 		{
 			//if crouch input is pressed, player height (scale y axis) and camera height (transform y axis), are subtracted by 'Crouch' amount.
 			if (_input.crouch == true)
 			{
 				//Camera transform & Player pill model scale change. (Due to player camera root, only player capsule scale.y need be changed.)
 				//subtract player height from PlayerCapsule.localScale.y
-				
-				Vector3 theScaleHeight = transform.localScale;
-				theScaleHeight = Vector3.Lerp(new Vector3(1, 1, 1), new Vector3(1 , playerHeightCrouch, 1), floatTime);
 
-                //Lerp from prior localScale Vector3 to desired localScale Vector3
-                transform.localScale = theScaleHeight;
+				Vector3 theScaleHeight = transform.localScale;
+				theScaleHeight = Vector3.Lerp(new Vector3(1, 1, 1), new Vector3(1, playerHeightCrouch, 1), floatTime);
+
+				//Lerp from prior localScale Vector3 to desired localScale Vector3
+				transform.localScale = theScaleHeight;
 			}
 			else
 			{
-                //Lerp from prior localScale Vector3 to desired localScale Vector3
-                transform.localScale = Vector3.Lerp(new Vector3(1, playerHeightCrouch, 1), new Vector3(1, 1, 1), floatTime);
+				//Lerp from prior localScale Vector3 to desired localScale Vector3
+				transform.localScale = Vector3.Lerp(new Vector3(1, playerHeightCrouch, 1), new Vector3(1, 1, 1), floatTime);
 			}
 			/*
 			if (_input.crouch == false && objectBlockingStanding == true) //objectBlockingStandard should be a raycast making sure there is not a collider within a certain distance of playerCapsule.
 			{
 				transform.localScale = new Vector3(1, playerHeightCrouch, 1);
+			}
+			//or I can do:
+			if (objectBlockingStanding == true)
+			{
+				input.crouch == true;
 			}
 			*/
 		}
