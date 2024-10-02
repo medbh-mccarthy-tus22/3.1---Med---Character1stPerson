@@ -64,7 +64,7 @@ namespace StarterAssets
 		private float _terminalVelocity = 53.0f;
 		public Vector3 theScaleHeight;
 		public float playerHeightCrouch = 0.5f;
-		public float floatTime = 1f;
+		public float lerpTime = 1f;
 
 		// timeout deltatime
 		private float _jumpTimeoutDelta;
@@ -281,15 +281,15 @@ namespace StarterAssets
 				//subtract player height from PlayerCapsule.localScale.y
 
 				Vector3 theScaleHeight = transform.localScale;
-				theScaleHeight = Vector3.Lerp(new Vector3(1, 1, 1), new Vector3(1, playerHeightCrouch, 1), floatTime);
+				theScaleHeight = Vector3.Lerp(new Vector3(1, 1, 1), new Vector3(1, playerHeightCrouch, 1), lerpTime * Time.deltaTime);
 
 				//Lerp from prior localScale Vector3 to desired localScale Vector3
 				transform.localScale = theScaleHeight;
 			}
-			else
-			{
+			else if (_input.crouch == false)
+            {
 				//Lerp from prior localScale Vector3 to desired localScale Vector3
-				transform.localScale = Vector3.Lerp(new Vector3(1, playerHeightCrouch, 1), new Vector3(1, 1, 1), floatTime);
+				transform.localScale = Vector3.Lerp(new Vector3(1, playerHeightCrouch, 1), new Vector3(1, 1, 1), lerpTime * Time.deltaTime);
 			}
 			/*
 			if (_input.crouch == false && objectBlockingStanding == true) //objectBlockingStandard should be a raycast making sure there is not a collider within a certain distance of playerCapsule.
